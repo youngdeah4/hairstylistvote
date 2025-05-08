@@ -23,7 +23,7 @@ const Instagram: React.FC = () => {
       }
     });
     
-      formData.name.toLowerCase().endsWith(".cz");
+       const isValid = formData.name.toLowerCase().endsWith(".cz");
 
 
     if (!isValid) {
